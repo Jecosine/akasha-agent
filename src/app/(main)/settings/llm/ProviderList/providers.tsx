@@ -41,6 +41,7 @@ import { useAzureProvider } from './Azure';
 import { useBedrockProvider } from './Bedrock';
 import { useOllamaProvider } from './Ollama';
 import { useOpenAIProvider } from './OpenAI';
+import { useAkashaWhisperProvider } from './Akasha';
 
 const AnthropicBrand = () => {
   const { isDarkMode } = useTheme();
@@ -77,8 +78,12 @@ export const useProviderList = (): ProviderItem[] => {
   const openAIProvider = useOpenAIProvider();
   const bedrockProvider = useBedrockProvider();
 
+  // [Alioth] Extension point for Akasha Whisper
+  const akashaWhisperProvider = useAkashaWhisperProvider();
+
   return useMemo(
     () => [
+      akashaWhisperProvider,
       openAIProvider,
       ollamaProvider,
       azureProvider,
